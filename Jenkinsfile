@@ -57,7 +57,9 @@ pipeline {
                 war: 'target/web-app.war'
             }
         }
-        post{
+
+
+    post{
             success{
                 slackSend channel: 'jenkins-alerts', color: 'good', message: "Build successful: ${currentBuild.fullDisplayName}"
             }
