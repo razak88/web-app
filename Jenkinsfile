@@ -42,7 +42,7 @@ pipeline {
                     ]], 
                     credentialsId: 'nexus-credentials', 
                     groupId: 'com.mt', 
-                    nexusUrl: 'http://44.203.72.44:8081/repository/jomacs-webapp', 
+                    nexusUrl: '3.86.111.149:8081/repository/jomacs-webapp', 
                     nexusVersion: 'nexus3', 
                     protocol: 'http', 
                     repository: 'jomac-webapp', 
@@ -53,8 +53,7 @@ pipeline {
 
         stage('prod deployment') {
             steps {
-                deploy adapters: [tomcat9(credentialsId: 'tomcat-credentials', path: '', url: 'http://54.158.220.239:8080')], 
-                contextPath: null, 
+                deploy adapters: deploy adapters: [tomcat9(credentialsId: 'tomcat-credentials', path: '', url: 'http://54.90.219.133:8080')], contextPath: null, war: 'target/web-app.war'
                 war: 'target/web-app.war'
             }
         }
