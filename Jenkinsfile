@@ -31,15 +31,6 @@ pipeline {
             }
         }
 
-        // Uncomment this stage if needed
-        // stage('Quality Gate') {
-        //     steps {
-        //         timeout(time: 1, unit: 'HOURS') {
-        //             waitForQualityGate abortPipeline: true
-        //         }
-        //     }
-        // }
-
         stage('uploading to nexus') {
             steps {
                 nexusArtifactUploader(
@@ -51,7 +42,7 @@ pipeline {
                     ]], 
                     credentialsId: 'nexus-credentials', 
                     groupId: 'com.mt', 
-                    nexusUrl: '44.203.72.44:8081/repo/jomacs-webapp', 
+                    nexusUrl: '44.203.72.44:8081/repository/jomacs-webapp', 
                     nexusVersion: 'nexus3', 
                     protocol: 'http', 
                     repository: 'jomac-webapp', 
