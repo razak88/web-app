@@ -53,24 +53,26 @@ pipeline {
 
         stage('prod deployment') {
             steps {
-                deploy adapters: [tomcat9(credentialsId: 'tomcat-credentials', path: '', url: 'http://54.90.219.133:8080')], contextPath: null, war: 'target/web-app.war'
-                war: 'target/web-app.war'
-            }
-        }
-
-
-    post{
-            success{
-                slackSend channel: 'jenkins-alerts', color: 'good', message: "Build successful: ${currentBuild.fullDisplayName}"
-            }
-            failure{
-                slackSend channel: 'jenkins-alerts', color: 'danger', message: "Build failed: ${currentBuild.fullDisplayName}"
-            }
-            aborted{
-                slackSend channel: 'jekins-alerts', color: 'warning', message: "Build aborted: ${currentBuild.fullDisplayName}"
+                deploy adapters: [
+                    tomcat9(
+                        credentialsId: 'tomcat-credentials', 
+                        path: '', 
+                        url: 'http://54.90.219.133:8080'
+                    )
+                ], contextPath: null, war: 'target/web-app.war'
             }
         }
     }
+
+    post{
+        success{
+            slackSend channel: 'jenkins-alerts', color: 'good', message: "Build successful: ${currentBuild.fullDisplayName}"
+        }
+        failure{
+            slackSend channel: 'jenkins-alerts', color: 'danger', message: "Build failed: ${currentBuild.fullDisplayName}"
+        }
+        aborted{
+            slackSend channel: 'jenkins-alerts', color: 'warning', message: "Build aborted: ${currentBuild.fullDisplayName}"
+        }
+    }
 }
-
-
