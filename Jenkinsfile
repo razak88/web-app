@@ -42,7 +42,7 @@ pipeline {
                     ]], 
                     credentialsId: 'nexus-credentials', 
                     groupId: 'com.mt', 
-                    nexusUrl: '44.203.72.44:8081/repository/jomacs-webapp', 
+                    nexusUrl: 'http://44.203.72.44:8081/repository/jomacs-webapp', 
                     nexusVersion: 'nexus3', 
                     protocol: 'http', 
                     repository: 'jomac-webapp', 
